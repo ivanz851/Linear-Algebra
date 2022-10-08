@@ -1,5 +1,11 @@
 # ninja log v5
-0	228	1665250079481319608	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
-228	264	1665250079517320825	ClionProject	66308592a8f375a5
 0	203	1665250367935275707	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
 203	260	1665250367991277673	ClionProject	66308592a8f375a5
+1	227	1665250828019803295	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
+0	1209	1665250836783577478	CMakeFiles/ClionProject.dir/matrix.cpp.o	9cc4142e7fbed7d3
+1	199	1665250862698954325	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
+199	235	1665250862730953595	ClionProject	be8b7985af4feb6b
+0	1123	1665250879182591547	CMakeFiles/ClionProject.dir/matrix.cpp.o	9cc4142e7fbed7d3
+1123	1158	1665250879214590869	ClionProject	be8b7985af4feb6b
+0	257	1665251118367788346	CMakeFiles/ClionProject.dir/matrix.cpp.o	9cc4142e7fbed7d3
+257	304	1665251118411788189	ClionProject	be8b7985af4feb6b
