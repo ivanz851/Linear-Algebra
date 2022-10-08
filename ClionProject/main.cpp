@@ -1,6 +1,8 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    std::cout << "Testing GIT\n";
+    
     return 0;
 }
