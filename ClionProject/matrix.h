@@ -3,20 +3,19 @@
 #include <iostream>
 #include <vector>
 
-class matrix {
+class Matrix {
 public:
-    void PrintMatrix() {
-        std::cout << "matrix height " << height << "\n";
-        std::cout << "matrix width " << width << "\n";
-        std::cout << "matrix = \n";
-        for (size_t i = 0; i < height; i++) {
-            for (size_t j = 0; j < width; j++) {
-                std::cout << matrix[i][j] << " ";
-            }
-            std::cout << "\n";
-        }
-        std::cout << "\n";
-    }
+    // Default constructor which initializes empty matrix
+    Matrix();
+    // Constructor which initializes n * m matrix filled with zeros
+    Matrix(size_t height_, size_t width_);
+
+    // operator+ for two matrices which sizes are pairwise equal
+    Matrix operator+(const Matrix& other) const;
+    const Matrix& operator+=(const Matrix& other);
+
+
+    void PrintMatrix();
 
 
 private:
