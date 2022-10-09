@@ -67,6 +67,12 @@ build CMakeFiles/ClionProject.dir/exceptions.cpp.o: CXX_COMPILER__ClionProject_D
   OBJECT_DIR = CMakeFiles/ClionProject.dir
   OBJECT_FILE_DIR = CMakeFiles/ClionProject.dir
 
+build CMakeFiles/ClionProject.dir/Problem_1.cpp.o: CXX_COMPILER__ClionProject_Debug /home/ivanz/user/LinearAlgebra2022/IHW-1_oct_2022/ClionProject/Problem_1.cpp || cmake_object_order_depends_target_ClionProject
+  DEP_FILE = CMakeFiles/ClionProject.dir/Problem_1.cpp.o.d
+  FLAGS = -g -std=gnu++20
+  OBJECT_DIR = CMakeFiles/ClionProject.dir
+  OBJECT_FILE_DIR = CMakeFiles/ClionProject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ClionProject
@@ -75,7 +81,7 @@ build CMakeFiles/ClionProject.dir/exceptions.cpp.o: CXX_COMPILER__ClionProject_D
 #############################################
 # Link the executable ClionProject
 
-build ClionProject: CXX_EXECUTABLE_LINKER__ClionProject_Debug CMakeFiles/ClionProject.dir/main.cpp.o CMakeFiles/ClionProject.dir/matrix.cpp.o CMakeFiles/ClionProject.dir/exceptions.cpp.o
+build ClionProject: CXX_EXECUTABLE_LINKER__ClionProject_Debug CMakeFiles/ClionProject.dir/main.cpp.o CMakeFiles/ClionProject.dir/matrix.cpp.o CMakeFiles/ClionProject.dir/exceptions.cpp.o CMakeFiles/ClionProject.dir/Problem_1.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/ClionProject.dir
   POST_BUILD = :
