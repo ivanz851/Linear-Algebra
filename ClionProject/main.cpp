@@ -11,6 +11,12 @@ int main() {
 
     A = A - B;
     PrintMatrix(A);
+    PrintMatrix(-A);
+
+    Matrix C;
+    A += C;
+
+    A *= C;
 
     cout << "OK\n";
 }

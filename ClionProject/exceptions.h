@@ -1,5 +1,6 @@
 #pragma "once"
 
+/*
 #include <exception>
 #include <iostream>
 #include <string>
@@ -13,4 +14,11 @@ private:
 };
 
 void ThrowMyException(const std::string& s);
+void ReportError(const std::string& error_message);
+
+*/
+
+#include <iostream>
+#include <string>
+
 void ReportError(const std::string& error_message);

@@ -39,6 +39,16 @@ const Matrix& Matrix::operator+=(const Matrix& other) {
     return *this = *this + other;
 }
 
+Matrix Matrix::operator-() const {
+    Matrix res = *this;
+    for (size_t i = 0; i < height; ++i) {
+        for (size_t j = 0; j < width; j++) {
+            res.matrix[i][j] = -res.matrix[i][j];
+        }
+    }
+    return res;
+}
+
 Matrix Matrix::operator-(const Matrix& other) const {
     if (this->height != other.height || this->width != other.width) {
         ReportError("You are trying to find difference of matrices which sizes are pairwise distinct.");
@@ -56,6 +66,28 @@ Matrix Matrix::operator-(const Matrix& other) const {
 
 const Matrix& Matrix::operator-=(const Matrix& other) {
     return *this = *this - other;
+}
+
+Matrix Matrix::operator*(const Matrix& other) const {
+    if (this->width != other.height) {
+        ReportError("You are trying to multiply matrices such that "
+                    "width of first matrix is not equal to height of second matrix.");
+        return *this;
+    }
+
+    Matrix res(this->height, other.width);
+    for (size_t k = 0; k < this->width; ++k) {
+        for (size_t i = 0; i < this->height; ++i) {
+            for (size_t j = 0; j < other.width; j++) {
+                res.matrix[i][j] = this->matrix[i][k] + other.matrix[k][j];
+            }
+        }
+    }
+    return res;
+}
+
+const Matrix& Matrix::operator*=(const Matrix& other) {
+    return *this = *this * other;
 }
 
 void PrintMatrix(const Matrix& A) {

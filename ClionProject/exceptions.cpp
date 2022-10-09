@@ -1,5 +1,6 @@
 #include "exceptions.h"
 
+/*
 MyException::MyException(const std::string& error_message) {
     this->message += error_message;
 }
@@ -18,4 +19,9 @@ void ReportError(const std::string& error_message) {
     } catch (MyException& my_exception) {
         std::cout << my_exception.what() << "\n";
     }
+}
+*/
+
+void ReportError(const std::string& error_message) {
+    std::cout << "Error: " << error_message << "\n";
 }
