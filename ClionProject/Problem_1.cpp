@@ -1,6 +1,6 @@
 #include "Problem_1.h"
 
-#include "matrix.h"
+#include "Matrix.h"
 
 void Problem_1() {
 

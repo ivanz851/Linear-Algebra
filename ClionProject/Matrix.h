@@ -32,9 +32,12 @@ public:
 
     // Solves system of linear equations of the form A * x = b using Gauss algorithm
     // (A - matrix n * m, b - vector n * 1, x - tuple m * 1)
+
+    /*
     Gauss(Matrix A) {
 
     }
+     */
 
     friend void PrintMatrix(const Matrix& A);
 

@@ -1,5 +1,5 @@
 #include "exceptions.h"
-#include "matrix.h"
+#include "Matrix.h"
 
 #include <iostream>
 
