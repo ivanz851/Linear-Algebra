@@ -79,7 +79,7 @@ Matrix Matrix::operator*(const Matrix& other) const {
     for (size_t k = 0; k < this->width; ++k) {
         for (size_t i = 0; i < this->height; ++i) {
             for (size_t j = 0; j < other.width; j++) {
-                res.matrix[i][j] = this->matrix[i][k] + other.matrix[k][j];
+                res.matrix[i][j] += this->matrix[i][k] * other.matrix[k][j];
             }
         }
     }

@@ -21,4 +21,5 @@ void ReportError(const std::string& error_message);
 #include <iostream>
 #include <string>
 
+// Just prints "Error: <error_message>" to indicate errors that occurs during running program
 void ReportError(const std::string& error_message);

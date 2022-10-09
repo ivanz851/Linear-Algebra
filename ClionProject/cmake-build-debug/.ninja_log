@@ -1,10 +1,9 @@
 # ninja log v5
+1	329	1665318130340021108	CMakeFiles/ClionProject.dir/Problem_1.cpp.o	12dffc7ee8d77986
 0	414	1665312310606374974	CMakeFiles/ClionProject.dir/matrix.cpp.o	9cc4142e7fbed7d3
-1	235	1665311664799197463	CMakeFiles/ClionProject.dir/exceptions.cpp.o	aaa51fe4f374fe42
-0	258	1665312284681920725	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
-414	454	1665312310646375675	ClionProject	c7cc8cc274b1185
-0	12	1665314245904232485	build.ninja	b6eb1c071979ba74
-1	281	1665314260588467499	CMakeFiles/ClionProject.dir/Problem_1.cpp.o	12dffc7ee8d77986
-0	315	1665314260624468075	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
-0	411	1665314260716469548	CMakeFiles/ClionProject.dir/Matrix.cpp.o	f68b8ff1051806ab
-411	456	1665314260764470317	ClionProject	cca5e9ce08d60cc3
+1	337	1665316936030677688	CMakeFiles/ClionProject.dir/exceptions.cpp.o	aaa51fe4f374fe42
+1	365	1665318130376021638	CMakeFiles/ClionProject.dir/main.cpp.o	db7d96fc0cb4bbf7
+1	563	1665318147080267230	CMakeFiles/ClionProject.dir/Matrix.cpp.o	f68b8ff1051806ab
+0	8	1665315022736241928	CMakeFiles/ClionProject.dir/Vector.cpp.o	67a1f78ea3d5463
+0	12	1665323328065202399	build.ninja	b6eb1c071979ba74
+563	609	1665318147124267877	ClionProject	12c79d14dee3fbe8

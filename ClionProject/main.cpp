@@ -1,22 +1,14 @@
 #include "exceptions.h"
 #include "Matrix.h"
+#include "Problem_1.h"
 
 #include <iostream>
+
+#include <numeric>
 
 using namespace std;
 
 int main() {
-    Matrix A(2, 3, {{1, 2, 3}, {4, 5, 6}});
-    Matrix B(2, 3, {{10, 20, 30}, {40, 50, 60}});
 
-    A = A - B;
-    PrintMatrix(A);
-    PrintMatrix(-A);
-
-    Matrix C;
-    A += C;
-
-    A *= C;
-
-    cout << "OK\n";
+    Problem_1();
 }

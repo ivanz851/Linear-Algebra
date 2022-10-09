@@ -1,10 +1,17 @@
 #pragma once
 
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 class Matrix {
 public:
+    // height and width of the matrix
+    size_t height;
+    size_t width;
+    // matrix
+    std::vector<std::vector<int>> matrix;
+
     // Default constructor which initializes empty matrix
     Matrix();
     // Constructor which initializes height_ * width matrix filled with zeros
@@ -30,23 +37,8 @@ public:
     Matrix operator*(const Matrix& other) const;
     const Matrix& operator*=(const Matrix& other);
 
-    // Solves system of linear equations of the form A * x = b using Gauss algorithm
-    // (A - matrix n * m, b - vector n * 1, x - tuple m * 1)
-
-    /*
-    Gauss(Matrix A) {
-
-    }
-     */
-
+    // Prints matrix
     friend void PrintMatrix(const Matrix& A);
-
-private:
-    size_t height, width; // height and width of the matrix
-    std::vector<std::vector<int>> matrix; // matrix
-
-protected:
-
 };
 
 
