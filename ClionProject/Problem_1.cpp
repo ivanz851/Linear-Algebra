@@ -18,7 +18,18 @@ void Problem_1() {
     A *= B;
     PrintMatrix(A);
 
-    A.NormalizeEquationSystem();
+    /*
+    matrix height 5
+    matrix width 4
+    matrix =
+    4 2 3 1
+    6 -2 2 4
+    -1 -7 -4 3
+    6 2 4 2
+    -4 -2 -3 -1
+     */
+
+    //A.NormalizeEquationSystem();
 
     PrintMatrix(A);
 }

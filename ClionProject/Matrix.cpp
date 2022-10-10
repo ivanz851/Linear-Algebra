@@ -4,19 +4,23 @@
 Matrix::Matrix() {
     height = 0;
     width = 0;
-    matrix = std::vector<std::vector<int>> (0, std::vector<int> (0));
+    matrix = std::vector<std::vector<Rational>> (0, std::vector<Rational> (0));
 }
 
 Matrix::Matrix(size_t height_, size_t width_) : height(height_), width(width_) {
-    matrix = std::vector<std::vector<int>> (height, std::vector<int> (width, 0));
+    matrix = std::vector<std::vector<Rational>> (height, std::vector<Rational> (width, Rational()));
 }
 
 Matrix::Matrix(size_t height_, size_t width_, std::initializer_list<std::initializer_list<int>> matrix_) :
     height(height_), width(width_) {
-    matrix.assign(height, std::vector<int>(width));
-    size_t i = 0;
+    matrix.assign(height, std::vector<Rational>(width));
+    size_t matrix_row = 0;
     for (const auto& row : matrix_) {
-        copy(row.begin(), row.end(), matrix[i++].begin());
+        size_t matrix_column = 0;
+        for (const auto &i: row) {
+            matrix[matrix_row][matrix_column++] = Rational(static_cast<int64_t>(i));
+        }
+        matrix_row++;
     }
 }
 

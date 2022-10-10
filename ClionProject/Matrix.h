@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Rational.h"
+
 #include <iostream>
 #include <numeric>
 #include <vector>
@@ -10,7 +12,7 @@ public:
     size_t height;
     size_t width;
     // matrix
-    std::vector<std::vector<int>> matrix;
+    std::vector<std::vector<Rational>> matrix;
 
     // Default constructor which initializes empty matrix
     Matrix();

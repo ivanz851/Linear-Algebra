@@ -6,11 +6,11 @@ void NormalizeEquationSystem(Matrix& A, Vector& b) {
     for (size_t i = 0; i < A.height; i++) {
         int row_gcd = 0;
         for (size_t j = 0; j < A.width; j++) {
-            row_gcd = std::gcd(row_gcd, A.matrix[i][j]);
+            row_gcd = std::gcd(row_gcd, int(A.matrix[i][j]));
         }
         if (row_gcd != 0) {
             for (size_t j = 0; j < A.width; j++) {
-                A.matrix[i][j] /= row_gcd;
+                A.matrix[i][j] /= Rational(row_gcd);
             }
             b.vector[i] /= row_gcd;
         }
@@ -25,7 +25,7 @@ void NormalizeEquationSystem(Matrix& A, Vector& b) {
             if (A.matrix[i][j] != 0) {
                 if (A.matrix[i][j] < 0) {
                     for (; j < A.width; j++) {
-                        A.matrix[i][j] *= -1;
+                        A.matrix[i][j] *= Rational(-1);
                     }
                     b.vector[i] *= -1;
                 }
