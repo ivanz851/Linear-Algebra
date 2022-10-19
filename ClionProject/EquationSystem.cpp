@@ -1,12 +1,13 @@
 #include "EquationSystem.h"
 
+/*
 void NormalizeEquationSystem(Matrix& A, Vector& b) {
     // 1).For each row i:
     //     Divide all numbers in row by their greatest common divisor (only if there is a non-zero number in row);
     for (size_t i = 0; i < A.height; i++) {
         int row_gcd = 0;
         for (size_t j = 0; j < A.width; j++) {
-            row_gcd = std::gcd(row_gcd, int(A.matrix[i][j]));
+            row_gcd = std::gcd(row_gcd, int64_t(A.matrix[i][j]));
         }
         if (row_gcd != 0) {
             for (size_t j = 0; j < A.width; j++) {
@@ -74,3 +75,5 @@ std::vector<int> Gauss(Matrix A, Vector b) {
 
     // TODO
 }
+
+*/

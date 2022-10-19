@@ -8,10 +8,10 @@ public:
 
     // Default constructor which initializes rational number equal to zero (0/1)
     Rational();
-    // Constructor which initializes rational number (nominator_/1)
-    explicit Rational(int64_t nominator_);
-    // Constructor which initializes rational number (nominator_/denominator_)
-    Rational(int64_t nominator_, int64_t denominator_);
+    // Constructor which initializes rational number (numerator_/1)
+    explicit Rational(int64_t numerator_);
+    // Constructor which initializes rational number (numerator_/denominator_)
+    Rational(int64_t numerator_, int64_t denominator_);
 
     friend std::ostream& operator<<(std::ostream& out, const Rational& poly);
 
@@ -36,25 +36,28 @@ public:
     Rational operator/(const Rational& other) const;
     const Rational& operator/=(const Rational& other);
 
-    explicit operator int() const;
+    explicit operator int64_t() const;
 
 
-    bool operator==() {
+    bool operator==(const Rational& other) const;
+    bool operator!=(const Rational& other) const;
 
-    }
-    bool operator!=() {
+    // TODO: implement spaceship operator
+    bool operator<(const Rational& other) const;
+    bool operator>(const Rational& other) const;
 
-    }
+    bool operator<=(const Rational& other) const;
+    bool operator>=(const Rational& other) const;
 
 
     //void print() const;
 
 private:
-    int64_t nominator;
+    int64_t numerator;
     int64_t denominator;
 
     static int64_t Gcd(int64_t a, int64_t b);
 
-    // Normalizes rational number such that greatest common divisor of nominator and denominator is 1
+    // Normalizes rational number such that greatest common divisor of numerator and denominator is 1
     void Normalize();
 };

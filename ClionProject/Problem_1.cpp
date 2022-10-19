@@ -31,5 +31,5 @@ void Problem_1() {
 
     //A.NormalizeEquationSystem();
 
-    PrintMatrix(A);
+    //PrintMatrix(A);
 }

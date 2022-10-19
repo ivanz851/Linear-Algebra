@@ -2,40 +2,44 @@
 #include "Rational.h"
 
 Rational::Rational() {
-    nominator = 0;
+    numerator = 0;
     denominator = 1;
 }
 
-Rational::Rational(int64_t nominator_) : nominator(nominator_), denominator(1) {
+Rational::Rational(int64_t numerator_) : numerator(numerator_), denominator(1) {
 
 }
 
-Rational::Rational(int64_t nominator_, int64_t denominator_) {
+Rational::Rational(int64_t numerator_, int64_t denominator_) {
     if (denominator_ == 0) {
         ReportError("You are trying to create rational number with zero denominator.");
-        nominator = 0;
+        numerator = 0;
         denominator = 0;
         return;
     }
 
-    nominator = nominator_;
+    numerator = numerator_;
     if (denominator_ < 0) {
         denominator_ *= -1;
-        nominator *= -1;
+        numerator *= -1;
     }
     denominator = denominator_;
     Normalize();
 }
 
 std::ostream& operator<<(std::ostream& out, const Rational& a) {
-    return out << a.nominator << "/" << a.denominator << "\n";
+    if (a.denominator == 1) {
+        return out << a.numerator;
+    } else {
+        return out << a.numerator << "/" << a.denominator;
+    }
 }
 
 Rational& Rational::operator=(const Rational& other) {
     if (other.denominator == 0) {
         ReportError("You are trying to assign rational number with zero denominator.");
     } else {
-        this->nominator = other.nominator;
+        this->numerator = other.numerator;
         this->denominator = other.denominator;
     }
 }
@@ -45,7 +49,7 @@ Rational Rational::operator+(const Rational& other) const {
         ReportError("You are trying to add rational number with zero denominator.");
         return *this;
     } else {
-        return {nominator * other.denominator + other.nominator * denominator,
+        return {numerator * other.denominator + other.numerator * denominator,
                         denominator * other.denominator};
     }
 }
@@ -56,7 +60,7 @@ const Rational& Rational::operator+=(const Rational& other) {
 
 Rational Rational::operator-() const {
     Rational res = *this;
-    res.nominator = -res.nominator;
+    res.numerator = -res.numerator;
     return res;
 }
 
@@ -65,7 +69,7 @@ Rational Rational::operator-(const Rational& other) const {
         ReportError("You are trying to subtract rational number with zero denominator.");
         return *this;
     } else {
-        return {nominator * other.denominator - other.nominator * denominator,
+        return {numerator * other.denominator - other.numerator * denominator,
                         denominator * other.denominator};
     }
 }
@@ -79,7 +83,7 @@ Rational Rational::operator*(const Rational& other) const {
         ReportError("You are trying to multiply by rational number with zero denominator.");
         return *this;
     } else {
-        return {nominator * other.nominator,
+        return {numerator * other.numerator,
                         denominator * other.denominator};
     }
 }
@@ -92,12 +96,12 @@ Rational Rational::operator/(const Rational& other) const {
     if (other.denominator == 0) {
         ReportError("You are trying to divide by rational number with zero denominator.");
         return *this;
-    } else if (other.nominator == 0) {
+    } else if (other.numerator == 0) {
         ReportError("You are trying to divide by zero.");
         return *this;
     } else {
-        return {nominator * other.denominator,
-                        denominator * other.nominator};
+        return {numerator * other.denominator,
+                        denominator * other.numerator};
     }
 }
 
@@ -107,17 +111,17 @@ const Rational& Rational::operator/=(const Rational& other) {
 
 /*
 void Rational::print() const {
-    std::cout << nominator << "/" << denominator << "\n";
+    std::cout << numerator << "/" << denominator << "\n";
 }
  */
-Rational::operator int() const {
+Rational::operator int64_t() const {
     if (denominator == 0) {
         // ERROR
     } else if (denominator != 1) {
         // ERROR
     }
 
-    return nominator;
+    return numerator;
 }
 
 int64_t Rational::Gcd(int64_t a, int64_t b) {
@@ -132,7 +136,31 @@ int64_t Rational::Gcd(int64_t a, int64_t b) {
 }
 
 void Rational::Normalize() {
-    int64_t g = Gcd(std::abs(nominator),denominator);
-    nominator /= g;
+    int64_t g = Gcd(std::abs(numerator),denominator);
+    numerator /= g;
     denominator /= g;
+}
+
+bool Rational::operator==(const Rational& other) const {
+    return this->numerator == other.numerator && this->denominator == other.denominator;
+}
+
+bool Rational::operator!=(const Rational& other) const {
+    return !(*this == other);
+}
+
+bool Rational::operator<(const Rational& other) const {
+    return this->numerator * other.denominator < other.numerator * this->denominator;
+}
+
+bool Rational::operator>(const Rational& other) const {
+    return this->numerator * other.denominator > other.numerator * this->denominator;
+}
+
+bool Rational::operator<=(const Rational& other) const {
+    return this->numerator * other.denominator <= other.numerator * this->denominator;
+}
+
+bool Rational::operator>=(const Rational& other) const {
+    return this->numerator * other.denominator >= other.numerator * this->denominator;
 }
