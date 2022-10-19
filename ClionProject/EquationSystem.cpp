@@ -22,8 +22,8 @@ void NormalizeEquationSystem(Matrix& A, Vector& b) {
     //     Then, we sort all rows in increasing lexicographical order and use std::unique to delete matches.
     for (size_t i = 0; i < A.height; i++) {
         for (size_t j = 0; j < A.width; j++) {
-            if (A.matrix[i][j] != 0) {
-                if (A.matrix[i][j] < 0) {
+            if (A.matrix[i][j] != Rational(0)) {
+                if (A.matrix[i][j] < Rational(0)) {
                     for (; j < A.width; j++) {
                         A.matrix[i][j] *= Rational(-1);
                     }

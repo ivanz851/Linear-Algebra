@@ -36,8 +36,16 @@ public:
     Rational operator/(const Rational& other) const;
     const Rational& operator/=(const Rational& other);
 
+    explicit operator int() const;
 
-    operator int() const;
+
+    bool operator==() {
+
+    }
+    bool operator!=() {
+
+    }
+
 
     //void print() const;
 
