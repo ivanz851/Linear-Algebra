@@ -1,12 +1,10 @@
-#include "exceptions.h"
-#include "Matrix.h"
-
 template<typename T>
 Matrix<T>::Matrix() {
     height = 0;
     width = 0;
     matrix = std::vector<std::vector<T>> (0, std::vector<T> (0));
 }
+
 
 template<typename T>
 Matrix<T>::Matrix(size_t height_, size_t width_) : height(height_), width(width_) {
@@ -29,9 +27,25 @@ Matrix<T>::Matrix(size_t height_, size_t width_, std::initializer_list<std::init
 }
 
 template<typename T>
+Matrix<T>::Matrix(Matrix<T> const &other) {
+    height = other.height, width = other.width;
+
+    matrix.assign(height, std::vector<T>(width));
+    size_t matrix_row = 0;
+    for (const auto& row : other.matrix) {
+        size_t matrix_column = 0;
+        for (const auto &i: row) {
+            matrix[matrix_row][matrix_column++] = i;
+        }
+        matrix_row++;
+    }
+}
+
+
+template<typename T>
 Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const {
     if (this->height != other.height || this->width != other.width) {
-        ReportError("You are trying to find sum of matrices which sizes are pairwise distinct.");
+        //ReportError("You are trying to find sum of matrices which sizes are pairwise distinct.");
         return *this;
     }
 
@@ -63,7 +77,7 @@ Matrix<T> Matrix<T>::operator-() const {
 template<typename T>
 Matrix<T> Matrix<T>::operator-(const Matrix<T>& other) const {
     if (this->height != other.height || this->width != other.width) {
-        ReportError("You are trying to find difference of matrices which sizes are pairwise distinct.");
+        //ReportError("You are trying to find difference of matrices which sizes are pairwise distinct.");
         return *this;
     }
 
@@ -84,8 +98,8 @@ const Matrix<T>& Matrix<T>::operator-=(const Matrix<T>& other) {
 template<typename T>
 Matrix<T> Matrix<T>::operator*(const Matrix<T>& other) const {
     if (this->width != other.height) {
-        ReportError("You are trying to multiply matrices such that "
-                    "width of first matrix is not equal to height of second matrix.");
+        //ReportError("You are trying to multiply matrices such that "
+        //            "width of first matrix is not equal to height of second matrix.");
         return *this;
     }
 

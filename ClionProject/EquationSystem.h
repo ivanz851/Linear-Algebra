@@ -16,4 +16,19 @@ void NormalizeEquationSystem(Matrix<T>& A, Matrix<T>& b);
 
 // Solves linear equations system of form: A * x = B, where A is matrix n * m, B is matrix n * k and x is tuple 1 * m
 template<typename T>
-std::vector<int> Gauss(Matrix<T> A, Matrix<T> B);
+Matrix<T> Gauss(Matrix<T> A, Matrix<T> B);
+
+#include"EquationSystem.tpp"
+
+
+template<typename T>
+Matrix<T> FindInverse(Matrix<T> A) {
+    /// TODO Inverse matrix exists only for square matrices
+
+    Matrix<T> X(A.height, A.width);
+    for (size_t i = 0; i < A.height; ++i) {
+        X.matrix[i][i] = 1;
+    }
+
+    return Gauss<Rational>(A, X);
+}
