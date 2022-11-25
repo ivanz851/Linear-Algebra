@@ -1,30 +1,34 @@
 #include "exceptions.h"
 #include "Matrix.h"
 
-Matrix::Matrix() {
+template<typename T>
+Matrix<T>::Matrix() {
     height = 0;
     width = 0;
-    matrix = std::vector<std::vector<Rational>> (0, std::vector<Rational> (0));
+    matrix = std::vector<std::vector<T>> (0, std::vector<T> (0));
 }
 
-Matrix::Matrix(size_t height_, size_t width_) : height(height_), width(width_) {
-    matrix = std::vector<std::vector<Rational>> (height, std::vector<Rational> (width, Rational()));
+template<typename T>
+Matrix<T>::Matrix(size_t height_, size_t width_) : height(height_), width(width_) {
+    matrix = std::vector<std::vector<T>> (height, std::vector<T> (width, T()));
 }
 
-Matrix::Matrix(size_t height_, size_t width_, std::initializer_list<std::initializer_list<int>> matrix_) :
+template<typename T>
+Matrix<T>::Matrix(size_t height_, size_t width_, std::initializer_list<std::initializer_list<T>> matrix_) :
     height(height_), width(width_) {
-    matrix.assign(height, std::vector<Rational>(width));
+    matrix.assign(height, std::vector<T>(width));
     size_t matrix_row = 0;
     for (const auto& row : matrix_) {
         size_t matrix_column = 0;
         for (const auto &i: row) {
-            matrix[matrix_row][matrix_column++] = Rational(static_cast<int64_t>(i));
+            matrix[matrix_row][matrix_column++] = i;
         }
         matrix_row++;
     }
 }
 
-Matrix Matrix::operator+(const Matrix& other) const {
+template<typename T>
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& other) const {
     if (this->height != other.height || this->width != other.width) {
         ReportError("You are trying to find sum of matrices which sizes are pairwise distinct.");
         return *this;
@@ -39,11 +43,13 @@ Matrix Matrix::operator+(const Matrix& other) const {
     return res;
 }
 
-const Matrix& Matrix::operator+=(const Matrix& other) {
+template<typename T>
+const Matrix<T>& Matrix<T>::operator+=(const Matrix<T>& other) {
     return *this = *this + other;
 }
 
-Matrix Matrix::operator-() const {
+template<typename T>
+Matrix<T> Matrix<T>::operator-() const {
     Matrix res = *this;
     for (size_t i = 0; i < height; ++i) {
         for (size_t j = 0; j < width; j++) {
@@ -53,7 +59,8 @@ Matrix Matrix::operator-() const {
     return res;
 }
 
-Matrix Matrix::operator-(const Matrix& other) const {
+template<typename T>
+Matrix<T> Matrix<T>::operator-(const Matrix<T>& other) const {
     if (this->height != other.height || this->width != other.width) {
         ReportError("You are trying to find difference of matrices which sizes are pairwise distinct.");
         return *this;
@@ -68,18 +75,20 @@ Matrix Matrix::operator-(const Matrix& other) const {
     return res;
 }
 
-const Matrix& Matrix::operator-=(const Matrix& other) {
+template<typename T>
+const Matrix<T>& Matrix<T>::operator-=(const Matrix<T>& other) {
     return *this = *this - other;
 }
 
-Matrix Matrix::operator*(const Matrix& other) const {
+template<typename T>
+Matrix<T> Matrix<T>::operator*(const Matrix<T>& other) const {
     if (this->width != other.height) {
         ReportError("You are trying to multiply matrices such that "
                     "width of first matrix is not equal to height of second matrix.");
         return *this;
     }
 
-    Matrix res(this->height, other.width);
+    Matrix<T> res(this->height, other.width);
     for (size_t k = 0; k < this->width; ++k) {
         for (size_t i = 0; i < this->height; ++i) {
             for (size_t j = 0; j < other.width; j++) {
@@ -90,11 +99,13 @@ Matrix Matrix::operator*(const Matrix& other) const {
     return res;
 }
 
-const Matrix& Matrix::operator*=(const Matrix& other) {
+template<typename T>
+const Matrix<T>& Matrix<T>::operator*=(const Matrix<T>& other) {
     return *this = *this * other;
 }
 
-void PrintMatrix(const Matrix& A) {
+template<typename T>
+void PrintMatrix(const Matrix<T>& A) {
     std::cout << "matrix height " << A.height << "\n";
     std::cout << "matrix width " << A.width << "\n";
     std::cout << "matrix = \n";

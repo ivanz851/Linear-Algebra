@@ -2,10 +2,6 @@
 #include <iostream>
 #include <algorithm>
 
-#include "Rational.h"
-#include "Matrix.h"
-
-
 using namespace std;
 
 class Problem1 {
@@ -23,7 +19,7 @@ public:
 
     // To test this function I used https://www.eolymp.com/ru/problems/1788
     // Solution: https://site.ada.edu.az/~medv/acm/Docs%20e-olimp/Volume%2018/1788.htm
-    permutation FindInverse(const permutation p) {
+    permutation find_inverse(const permutation p) {
         size_t n = p.size();
         permutation p_inverse(n);
 
@@ -112,7 +108,7 @@ public:
         std::vector<permutation> res;
 
         permutation a = {3, 7, 1, 6, 4, 5, 8, 2};
-        permutation b = power(composition(FindInverse({7, 2, 3, 1, 4, 6, 5, 8}),
+        permutation b = power(composition(find_inverse({7, 2, 3, 1, 4, 6, 5, 8}),
                                           power({6, 8, 2, 4, 3, 5, 1, 7}, 13)), 167);
 
         permutation p = get_id(8);
@@ -135,38 +131,7 @@ class Problem2 {
 
 
 
-
-
-    void solve() {
-        Matrix<Rational> A(4, 4,
-                 {{-3, 1, -3, 1},
-                  {3, 3, 1, -1},
-                  {-1, 3, 2, 2},
-                  {-3, 3, -3, 2}});
-
-        Matrix B(4, 4,
-                 {{4, 4, 2, -1},
-                  {4, -8, 7, -2},
-                  {-4, 7, -3, 6},
-                  {-4, -7, 3, -3}});
-
-        Matrix C(4, 4,
-                 {{2, -1, -2, 3},
-                  {-2, -1, 3, -2},
-                  {1, -3, 2, 3},
-                  {3, -2, -1, 1}});
-
-        Matrix D(4, 4,
-                 {{1, -1, 1, 1},
-                  {1, -2, 2, 2},
-                  {1, -2, 3, 1},
-                  {-1, 2, -1, -2}});
-
-        Matrix X = A.FindInverse() * D * C.FindInverse();
-        X = X.FindInverse() - B;
-
-        X.print();
-    }
+    void solve();
 };
 
 class Problem3 {
@@ -181,8 +146,8 @@ class Problem5 {
 
 };
 
-//#include <bits/stdc++.h>
-//using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
 int main() {;
     Problem1 problem1;

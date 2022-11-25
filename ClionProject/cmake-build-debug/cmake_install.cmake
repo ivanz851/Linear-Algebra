@@ -1,4 +1,4 @@
-# Install script for directory: /home/ivanz/user/LinearAlgebra2022/IHW-1_oct_2022/ClionProject
+# Install script for directory: /home/ivanz/user/LinearAlgebra/LinearAlgebra/ClionProject
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ivanz/user/LinearAlgebra2022/IHW-1_oct_2022/ClionProject/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ivanz/user/LinearAlgebra/LinearAlgebra/ClionProject/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

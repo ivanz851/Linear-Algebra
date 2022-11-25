@@ -1,6 +1,6 @@
 #include "EquationSystem.h"
 
-/*
+
 void NormalizeEquationSystem(Matrix& A, Vector& b) {
     // 1).For each row i:
     //     Divide all numbers in row by their greatest common divisor (only if there is a non-zero number in row);
@@ -70,6 +70,7 @@ void NormalizeEquationSystem(Matrix& A, Vector& b) {
     }
 }
 
+/*
 std::vector<int> Gauss(Matrix A, Vector b) {
     NormalizeEquationSystem(A, b);
 
