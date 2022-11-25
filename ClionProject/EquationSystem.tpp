@@ -1,3 +1,5 @@
+using namespace  std;
+
 template<typename T>
 std::vector<T> plus_vector(std::vector<T> a, std::vector<T> b) {
     /// TODO check that a.size() == b.size()
@@ -20,7 +22,7 @@ std::vector<T> minus_vector(std::vector<T> a, std::vector<T> b) {
 
 template<typename T>
 std::vector<T> mult_vector(std::vector<T> v, T x) {
-    for (auto i : v) {
+    for (auto& i : v) {
         i *= x;
     }
     return v;
@@ -28,7 +30,7 @@ std::vector<T> mult_vector(std::vector<T> v, T x) {
 
 template<typename T>
 std::vector<T> div_vector(std::vector<T> v, T x) {
-    for (auto i : v) {
+    for (auto& i : v) {
         i /= x;
     }
     return v;
@@ -52,10 +54,10 @@ void NormalizeEquationSystem(Matrix<T>& A, Matrix<T>& B) {
         ssize_t ind_A = find_first_not_null(A.matrix[i]);
 
         T val;
-        val = (ind_A != -1 && A.matrix[i][ind_A] != 0) ? A.matrix[i][ind_A] : 0;
+        val = (ind_A != -1) ? A.matrix[i][ind_A] : 0;
         if (val == 0) {
             ssize_t ind_B = find_first_not_null(B.matrix[i]);
-            val = (ind_B != -1 && B.matrix[i][ind_A] != 0) ? B.matrix[i][ind_A] : 0;
+            val = (ind_B != -1) ? B.matrix[i][ind_B] : 0;
         }
 
         if (val != 0) {
@@ -80,6 +82,8 @@ void NormalizeEquationSystem(Matrix<T>& A, Matrix<T>& B) {
 
              if (ind_row1 == -1) {
                  return false;
+             } else if (ind_row2 == -1) {
+                 return true;
              } else {
                  return ind_row1 < ind_row2;
              }
@@ -101,8 +105,34 @@ void NormalizeEquationSystem(Matrix<T>& A, Matrix<T>& B) {
 template<typename T>
 Matrix<T> Gauss(Matrix<T> A, Matrix<T> B) {
 
+    int cnt = 0;
     while (true) {
+
         NormalizeEquationSystem(A, B);
+
+        /*
+        std::cout << "GAUSS EPTA " << cnt << "\n";
+
+        std::cout << "A = \n";
+
+        for (int i = 0; i < A.height; i++) {
+            for (int j = 0; j < A.width; j++) {
+                std::cout << A.matrix[i][j] << " ";
+            }
+            std::cout << "\n";
+        }
+        std::cout << "END\n\n";
+
+        std::cout << "B = \n";
+
+        for (int i = 0; i < B.height; i++) {
+            for (int j = 0; j < B.width; j++) {
+                std::cout << B.matrix[i][j] << " ";
+            }
+            std::cout << "\n";
+        }
+        std::cout << "END\n\n";
+        */
 
         int flag = false;
 
@@ -126,11 +156,34 @@ Matrix<T> Gauss(Matrix<T> A, Matrix<T> B) {
         ssize_t ind = find_first_not_null(A.matrix[i]);
         for (int j = i - 1; j >= 0; --j) {
             if (A.matrix[j][ind] != 0) {
-                A.matrix[j] = minus_vector(A.matrix[j], mult_vector(A.matrix[i], -A.matrix[j][ind] ));
-                B.matrix[j] = minus_vector(B.matrix[j], mult_vector(B.matrix[i], -B.matrix[j][ind] ));
+                T coef = A.matrix[j][ind];
+                A.matrix[j] = plus_vector(A.matrix[j], mult_vector(A.matrix[i], -coef));
+                B.matrix[j] = plus_vector(B.matrix[j], mult_vector(B.matrix[i], -coef));
             }
         }
     }
+
+    /*
+    std::cout << "A FINAL = \n";
+
+    for (int i = 0; i < A.height; i++) {
+        for (int j = 0; j < A.width; j++) {
+            std::cout << A.matrix[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "END\n\n";
+
+    std::cout << "B FINAL = \n";
+
+    for (int i = 0; i < B.height; i++) {
+        for (int j = 0; j < B.width; j++) {
+            std::cout << B.matrix[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "END\n\n";
+    */
 
     return B;
 }

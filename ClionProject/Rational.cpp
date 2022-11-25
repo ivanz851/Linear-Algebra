@@ -110,7 +110,7 @@ Rational Rational::operator/(const Rational& other) const {
 }
 
 const Rational& Rational::operator/=(const Rational& other) {
-    return *this = *this * other;
+    return *this = *this / other;
 }
 
 /*

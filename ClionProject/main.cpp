@@ -138,16 +138,12 @@ class Problem2 {
 
 public:
     void solve() {
+
         Matrix<Rational> A(4, 4,
                            {{-3, 1, -3, 1},
                             {3, 3, 1, -1},
                             {-1, 3, 2, 2},
                             {-3, 3, -3, 2}});;
-
-        /*
-         *
-         *
-         */
 
         Matrix<Rational> B(4, 4,
                             {{4, 4, 2, -1},
@@ -167,22 +163,13 @@ public:
                             {1, -2, 3, 1},
                             {-1, 2, -1, -2}});
 
-        cout << "OK1\n";
 
-        //Matrix<Rational> X = A.FindInverse() * D * C.FindInverse();
-        Matrix<Rational> X;
-        X = FindInverse<Rational>(X);
-        cout << "X = " << X.height << " " << X.width << "\n";
-        for (size_t i = 0; i < X.height; ++i) {
-            for (size_t j = 0; j < X.width; ++j) {
-                cout << X.matrix[i][j] << " ";
-            }
-            cout << "\n";
-        }
 
-        X = FindInverse<Rational>(X) - B;
 
-        cout << "OK2\n";
+
+        Matrix<Rational> X = FindInverse(A) * D * FindInverse(C);
+        X = FindInverse(X) - B;
+
 
         for (size_t i = 0; i < X.height; ++i) {
             for (size_t j = 0; j < X.width; ++j) {
@@ -212,8 +199,8 @@ int main() {
     //Problem1 problem1;
     //problem1.solve();
 
-    Problem2 problem2;
-    problem2.solve();
+    //Problem2 problem2;
+    //problem2.solve();
 
     return 0;
 }
