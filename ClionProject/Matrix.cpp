@@ -14,8 +14,9 @@ Matrix<T>::Matrix(size_t height_, size_t width_) : height(height_), width(width_
 }
 
 template<typename T>
-Matrix<T>::Matrix(size_t height_, size_t width_, std::initializer_list<std::initializer_list<T>> matrix_) :
-    height(height_), width(width_) {
+Matrix<T>::Matrix(size_t height_, size_t width_, std::initializer_list<std::initializer_list<T>> matrix_) {
+    height = height_, width = width_;
+
     matrix.assign(height, std::vector<T>(width));
     size_t matrix_row = 0;
     for (const auto& row : matrix_) {

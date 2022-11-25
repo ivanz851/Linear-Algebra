@@ -6,6 +6,10 @@ Rational::Rational() {
     denominator = 1;
 }
 
+Rational::Rational(int numerator_) : numerator(numerator_), denominator(1) {
+
+}
+
 Rational::Rational(int64_t numerator_) : numerator(numerator_), denominator(1) {
 
 }

@@ -9,6 +9,7 @@ public:
     // Default constructor which initializes rational number equal to zero (0/1)
     Rational();
     // Constructor which initializes rational number (numerator_/1)
+    Rational(int numerator_);
     explicit Rational(int64_t numerator_);
     // Constructor which initializes rational number (numerator_/denominator_)
     Rational(int64_t numerator_, int64_t denominator_);
