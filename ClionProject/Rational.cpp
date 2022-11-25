@@ -10,11 +10,11 @@ Rational::Rational(int numerator_) : numerator(numerator_), denominator(1) {
 
 }
 
-Rational::Rational(int64_t numerator_) : numerator(numerator_), denominator(1) {
+Rational::Rational(__int128 numerator_) : numerator(numerator_), denominator(1) {
 
 }
 
-Rational::Rational(int64_t numerator_, int64_t denominator_) {
+Rational::Rational(__int128 numerator_, __int128 denominator_) {
     if (denominator_ == 0) {
         ReportError("You are trying to create rational number with zero denominator.");
         numerator = 0;
@@ -33,9 +33,9 @@ Rational::Rational(int64_t numerator_, int64_t denominator_) {
 
 std::ostream& operator<<(std::ostream& out, const Rational& a) {
     if (a.denominator == 1) {
-        return out << a.numerator;
+        return out << (int64_t)a.numerator;
     } else {
-        return out << a.numerator << "/" << a.denominator;
+        return out << (int64_t)a.numerator << "/" << (int64_t)a.denominator;
     }
 }
 
@@ -118,7 +118,7 @@ void Rational::print() const {
     std::cout << numerator << "/" << denominator << "\n";
 }
  */
-Rational::operator int64_t() const {
+Rational::operator __int128() const {
     if (denominator == 0) {
         // ERROR
     } else if (denominator != 1) {
@@ -128,7 +128,7 @@ Rational::operator int64_t() const {
     return numerator;
 }
 
-int64_t Rational::Gcd(int64_t a, int64_t b) {
+__int128 Rational::Gcd(__int128 a, __int128 b) {
     a = std::abs(a);
     b = std::abs(b);
 
@@ -140,7 +140,7 @@ int64_t Rational::Gcd(int64_t a, int64_t b) {
 }
 
 void Rational::Normalize() {
-    int64_t g = Gcd(std::abs(numerator),denominator);
+    __int128 g = Gcd(std::abs(numerator),denominator);
     numerator /= g;
     denominator /= g;
 }

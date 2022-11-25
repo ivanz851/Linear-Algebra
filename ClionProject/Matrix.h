@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "Rational.h"
+#include "Poly.h"
+#include "Permutation.tpp"
 
 template<typename T>
 class Matrix {
@@ -43,6 +45,11 @@ public:
     const Matrix& operator*=(const Matrix& other);
 
 
+    T GetDet();
+
+    Poly GetCharacteristicPolynomial();
+
+    Rational GetDetRational();
 
     // Prints matrix
     friend void PrintMatrix(const Matrix<T>& A);

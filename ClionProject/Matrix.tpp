@@ -1,3 +1,9 @@
+#include "Poly.h"
+
+using namespace  std;
+
+
+
 template<typename T>
 Matrix<T>::Matrix() {
     height = 0;
@@ -131,4 +137,62 @@ void PrintMatrix(const Matrix<T>& A) {
         std::cout << "\n";
     }
     std::cout << "\n";
+}
+
+template<typename T>
+T Matrix<T>::GetDet() {
+    int n = this->height;
+    permutation p = get_id(n);
+
+    T res = Poly({{0, 0}});
+
+    do {
+        T tmp = Poly({{0, 1}});
+        for (int i = 0; i < n; i++) {
+            tmp *= (this->matrix)[i][p[i] - 1];
+        }
+        tmp *= Poly({{0, get_sign(p)}});
+
+        res += tmp;
+    } while (NextPermutation(p));
+
+    return res;
+}
+
+
+template<> Rational Matrix<Rational>::GetDetRational() {
+    int n = this->height;
+    permutation p = get_id(n);
+
+    Rational res = 0;
+
+    do {
+        Rational tmp = 1;
+        for (int i = 0; i < n; i++) {
+            tmp *= (this->matrix)[i][p[i] - 1];
+        }
+        tmp *= get_sign(p);
+
+        res += tmp;
+    } while (NextPermutation(p));
+
+    return res;
+}
+
+template<typename T>
+Poly Matrix<T>::GetCharacteristicPolynomial() {
+    int n = this->height;
+
+    Matrix<Poly> E(n, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j) {
+                E.matrix[i][j] = Poly({{{1, 1}}});
+            } else {
+                E.matrix[i][j] = Poly({{{0, 0}}});
+            }
+        }
+    }
+
+    return (E - (*this)).GetDet();
 }

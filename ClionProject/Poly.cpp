@@ -98,7 +98,7 @@ Poly Poly::operator-(const Poly& other) const {
     auto other_it = other.monomials_.begin();
     for (const auto& [power, coefficient] : this->monomials_) {
         while (other_it != other.monomials_.end() && other_it->power < power) {
-            res.monomials_.push_back({other_it->power, other_it->coefficient});
+            res.monomials_.push_back({other_it->power, -other_it->coefficient});
             other_it++;
         }
         if (other_it != other.monomials_.end() && other_it->power == power) {
@@ -111,7 +111,7 @@ Poly Poly::operator-(const Poly& other) const {
         }
     }
     while (other_it != other.monomials_.end()) {
-        res.monomials_.push_back({other_it->power, other_it->coefficient});
+        res.monomials_.push_back({other_it->power, -other_it->coefficient});
         other_it++;
     }
 
@@ -241,7 +241,7 @@ void operator>>(std::istream& in, Poly& poly) {
  */
 
 std::ostream& operator<<(std::ostream& out, const Poly& poly) {
-    out << "y = ";
+    //out << "y = ";
     if (poly.monomials_.empty()) {
         return out << "0";
     } else {

@@ -10,9 +10,9 @@ public:
     Rational();
     // Constructor which initializes rational number (numerator_/1)
     Rational(int numerator_);
-    explicit Rational(int64_t numerator_);
+    explicit Rational(__int128 numerator_);
     // Constructor which initializes rational number (numerator_/denominator_)
-    Rational(int64_t numerator_, int64_t denominator_);
+    Rational(__int128 numerator_, __int128 denominator_);
 
     friend std::ostream& operator<<(std::ostream& out, const Rational& poly);
 
@@ -37,7 +37,7 @@ public:
     Rational operator/(const Rational& other) const;
     const Rational& operator/=(const Rational& other);
 
-    explicit operator int64_t() const;
+    explicit operator __int128() const;
 
 
     bool operator==(const Rational& other) const;
@@ -54,10 +54,10 @@ public:
     //void print() const;
 
 private:
-    int64_t numerator;
-    int64_t denominator;
+    __int128 numerator;
+    __int128 denominator;
 
-    static int64_t Gcd(int64_t a, int64_t b);
+    static __int128 Gcd(__int128 a, __int128 b);
 
     // Normalizes rational number such that greatest common divisor of numerator and denominator is 1
     void Normalize();

@@ -1,5 +1,3 @@
-using namespace  std;
-
 template<typename T>
 std::vector<T> plus_vector(std::vector<T> a, std::vector<T> b) {
     /// TODO check that a.size() == b.size()
@@ -108,31 +106,41 @@ Matrix<T> Gauss(Matrix<T> A, Matrix<T> B) {
     int cnt = 0;
     while (true) {
 
-        NormalizeEquationSystem(A, B);
-
-        /*
-        std::cout << "GAUSS EPTA " << cnt << "\n";
-
-        std::cout << "A = \n";
-
+        cout << "A1 = \n";
         for (int i = 0; i < A.height; i++) {
             for (int j = 0; j < A.width; j++) {
-                std::cout << A.matrix[i][j] << " ";
+                cout << A.matrix[i][j] << " ";
             }
-            std::cout << "\n";
+            cout << "\n";
         }
-        std::cout << "END\n\n";
-
-        std::cout << "B = \n";
-
+        cout << "\n";
+        cout << "B1 = \n";
         for (int i = 0; i < B.height; i++) {
             for (int j = 0; j < B.width; j++) {
-                std::cout << B.matrix[i][j] << " ";
+                cout << B.matrix[i][j] << " ";
             }
-            std::cout << "\n";
+            cout << "\n";
         }
-        std::cout << "END\n\n";
-        */
+        cout << "\n";
+
+        NormalizeEquationSystem(A, B);
+
+        cout << "A2 = \n";
+        for (int i = 0; i < A.height; i++) {
+            for (int j = 0; j < A.width; j++) {
+                cout << A.matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\n";
+        cout << "B2 = \n";
+        for (int i = 0; i < B.height; i++) {
+            for (int j = 0; j < B.width; j++) {
+                cout << B.matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\n\n\n\n";
 
         int flag = false;
 
@@ -161,29 +169,24 @@ Matrix<T> Gauss(Matrix<T> A, Matrix<T> B) {
                 B.matrix[j] = plus_vector(B.matrix[j], mult_vector(B.matrix[i], -coef));
             }
         }
-    }
 
-    /*
-    std::cout << "A FINAL = \n";
-
-    for (int i = 0; i < A.height; i++) {
-        for (int j = 0; j < A.width; j++) {
-            std::cout << A.matrix[i][j] << " ";
+        cout << "A = \n";
+        for (int a = 0; a < A.height; a++) {
+            for (int j = 0; j < A.width; j++) {
+                cout << A.matrix[a][j] << " ";
+            }
+            cout << "\n";
         }
-        std::cout << "\n";
-    }
-    std::cout << "END\n\n";
-
-    std::cout << "B FINAL = \n";
-
-    for (int i = 0; i < B.height; i++) {
-        for (int j = 0; j < B.width; j++) {
-            std::cout << B.matrix[i][j] << " ";
+        cout << "\n";
+        cout << "B = \n";
+        for (int a = 0; a < B.height; a++) {
+            for (int j = 0; j < B.width; j++) {
+                cout << B.matrix[a][j] << " ";
+            }
+            cout << "\n";
         }
-        std::cout << "\n";
+        cout << "\n\n\n\n";
     }
-    std::cout << "END\n\n";
-    */
 
     return B;
 }

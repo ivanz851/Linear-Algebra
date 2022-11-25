@@ -6,111 +6,17 @@
 
 
 #include "Matrix.h"
+#include "Poly.h"
 #include "EquationSystem.h"
 
-
 using namespace std;
+
 
 class Problem1 {
 
     using permutation = std::vector<int>;
 
 public:
-    permutation get_id(int n) {
-        permutation res(n);
-        for (int i = 0; i < n; i++) {
-            res[i] = i + 1;
-        }
-        return res;
-    }
-
-    // To test this function I used https://www.eolymp.com/ru/problems/1788
-    // Solution: https://site.ada.edu.az/~medv/acm/Docs%20e-olimp/Volume%2018/1788.htm
-    permutation FindInverse(const permutation p) {
-        size_t n = p.size();
-        permutation p_inverse(n);
-
-        for (size_t i = 0; i < n; ++i) {
-            p_inverse[p[i] - 1] = i + 1;
-        }
-
-        return p_inverse;
-    }
-
-    permutation composition(const permutation a, const permutation b) {
-        // TODO check that a.size() == b.size()
-
-        size_t n = a.size();
-        permutation c(n);
-
-        for (size_t i = 0; i < n; ++i) {
-            c[i] = a[b[i] - 1];
-        }
-
-        return c;
-    }
-
-    permutation composition(std::vector<permutation> v) {
-        // TODO check that a.size() == b.size()
-
-        reverse(v.begin(), v.end());
-        permutation c = v.front();
-
-        for (size_t i = 1; i < v.size(); ++i) {
-            c = composition(v[i], c);
-        }
-
-        return c;
-    }
-
-    permutation power(const permutation a, int p) {
-        // TODO check that p >= 0
-
-        size_t n = a.size();
-        permutation res = get_id(n);
-
-        for (int i = 0; i < p; i++) {
-            res = composition(a, res);
-        }
-
-        return res;
-    }
-
-    // To test this function I used https://www.eolymp.com/ru/problems/2386
-    // Solution: https://neerc.ifmo.ru/wiki/index.php?title=%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_%D1%81%D0%BB%D0%B5%D0%B4%D1%83%D1%8E%D1%89%D0%B5%D0%B3%D0%BE_%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%B0
-    bool NextPermutation(permutation& p) {
-        size_t n = p.size();
-        permutation p_next = p;
-
-        if (n == 1) {
-            p = get_id(1);
-            return false;
-        }
-
-        for (size_t i = n - 2; ; --i) {
-            if (p_next[i] < p_next[i + 1]) {
-                size_t min_ind = i + 1;
-
-                for (size_t j = i + 1; j < n; ++j) {
-                    if (p_next[j] < p_next[min_ind] && p_next[j] > p_next[i]) {
-                        min_ind = j;
-                    }
-                }
-                swap(p_next[i], p_next[min_ind]);
-                reverse(p_next.begin() + i + 1, p_next.end());
-
-                p = p_next;
-                return true;
-            }
-            if (i == 0) {
-                break;
-            }
-        }
-
-        p = get_id(n);
-        return false;
-    }
-
     void solve() {
         std::vector<permutation> res;
 
@@ -181,15 +87,156 @@ public:
 };
 
 class Problem3 {
+public:
+    void solve() {
+        /*
+        Matrix<int> A(4, 4, {{4, 3, 3, 5},
+                             {4, 2, -2, -4},
+                             {-2, 2, -2, -1},
+                             {0, 0, 3, 5}});
+        */
 
+        Matrix<int> A(4, 4, {{-2, 4, 3, 4},
+                             {-1, 2, 4, -2},
+                             {-1, 1, -1, -3},
+                             {0, 0, -1, -1}});
+
+        int n = A.height;
+        Matrix<Poly> P(n, n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                P.matrix[i][j] = Poly({{{0, (A.matrix)[i][j]}}});
+            }
+        }
+
+        /*
+        cout << "C = \n";
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cout << C.matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\n\n";
+        */
+
+
+        auto res_char_poly = P.GetCharacteristicPolynomial();
+        cout << "RES_CHAR_POLY = " << res_char_poly << "\n";
+
+        Matrix<Rational> E(n, n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                E.matrix[i][j] = 1;
+            }
+        }
+
+        Matrix<Rational> Ar(n, n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Ar.matrix[i][j] = A.matrix[i][j];
+            }
+        }
+
+        auto T = Ar*Ar - E;
+        cout << "T = \n";
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cout << T.matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\n\n";
+
+        auto Inv = FindInverse((Ar * Ar - E));
+        auto Matrix_res = Inv * Inv;
+
+        cout << "Matrix_res = \n";
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cout << Matrix_res.matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "END\n\n";
+
+        auto res_det = Matrix_res.GetDetRational();
+
+        cout << "Res_det = " << res_det << "\n";
+    }
 };
 
 class Problem4 {
+public:
+    void solve() {
 
+
+        Matrix<Poly> A(7, 7,{
+                          {{{0, -4}}, {{0, 3}}, {{0, -3}}, {{0, 4}}, {{1, 1}}, {{0, -7}}, {{0, 2}}},
+                          {{{0, 5}}, {{0, 2}}, {{1, 1}}, {{0, 2}}, {{0, -9}}, {{0, 7}}, {{0, -8}}},
+                          {{{0, 1}}, {{0, 1}}, {{0, -4}}, {{0, -9}}, {{1, 1}}, {{0, 5}}, {{0, -5}}},
+                          {{{0, -7}}, {{0, 2}}, {{0, 9}}, {{0, -4}}, {{0, 2}}, {{1, 1}}, {{0, 7}}},
+                          {{{1, 1}}, {{0, 3}}, {{0, 3}}, {{0, 1}}, {{0, 5}}, {{0, -4}}, {{0, -8}}},
+                          {{{0, 7}}, {{1, 1}}, {{0, 5}}, {{0, 1}}, {{0, 3}}, {{0, 3}}, {{0, 7}}},
+                          {{{0, -4}}, {{0, -7}}, {{0, -8}}, {{1, 1}}, {{0, 5}}, {{0, 6}}, {{1, 1}}}});
+
+
+
+
+        for (auto it : A.matrix) {
+            for (auto jt : it) {
+                cout << jt << " ";
+            }
+            cout << "\n";
+        }
+
+        Poly det = A.GetDet();
+        std::cout << det << "\n";
+    }
 };
 
 class Problem5 {
+public:
+    void solve() {
 
+
+        Matrix<int> A(5, 2,
+                      {{3, -3},
+                       {4, -4},
+                       {-1, 1},
+                       {-4, 4},
+                       {1, -1}});
+
+        Matrix<int> B(2, 5,
+                      {{1, -3, 3, -1, 2},
+                       {2, -1, 1, 3, -3}});
+
+        Matrix<int> C = A * B;
+
+        int n = C.height;
+        Matrix<Poly> P(n, n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                P.matrix[i][j] = Poly({{{0, (C.matrix)[i][j]}}});
+            }
+        }
+
+        /*
+        cout << "C = \n";
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cout << C.matrix[i][j] << " ";
+            }
+            cout << "\n";
+        }
+        cout << "\n\n";
+        */
+
+
+        auto res = P.GetCharacteristicPolynomial();
+
+        cout << res << "\n";
+    }
 };
 
 //#include <bits/stdc++.h>
@@ -201,6 +248,15 @@ int main() {
 
     //Problem2 problem2;
     //problem2.solve();
+
+    Problem3 problem3;
+    problem3.solve();
+
+    //Problem4 problem4;
+    //problem4.solve();
+
+    //Problem5 problem5;
+    //problem5.solve();
 
     return 0;
 }
