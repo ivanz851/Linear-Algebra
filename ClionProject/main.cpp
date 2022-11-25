@@ -89,17 +89,18 @@ public:
 class Problem3 {
 public:
     void solve() {
-        /*
+
         Matrix<int> A(4, 4, {{4, 3, 3, 5},
                              {4, 2, -2, -4},
                              {-2, 2, -2, -1},
                              {0, 0, 3, 5}});
-        */
 
-        Matrix<int> A(4, 4, {{-2, 4, 3, 4},
-                             {-1, 2, 4, -2},
-                             {-1, 1, -1, -3},
-                             {0, 0, -1, -1}});
+
+
+
+
+
+
 
         int n = A.height;
         Matrix<Poly> P(n, n);
@@ -139,6 +140,7 @@ public:
         }
 
         auto T = Ar*Ar - E;
+        /*
         cout << "T = \n";
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -147,10 +149,12 @@ public:
             cout << "\n";
         }
         cout << "\n\n";
+        */
 
         auto Inv = FindInverse((Ar * Ar - E));
-        auto Matrix_res = Inv * Inv;
+        auto Matrix_res = Inv;
 
+        /*
         cout << "Matrix_res = \n";
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -159,10 +163,11 @@ public:
             cout << "\n";
         }
         cout << "END\n\n";
+        */
 
         auto res_det = Matrix_res.GetDetRational();
 
-        cout << "Res_det = " << res_det << "\n";
+        cout << "Res_det = " << res_det * res_det << "\n";
     }
 };
 
@@ -249,8 +254,8 @@ int main() {
     //Problem2 problem2;
     //problem2.solve();
 
-    Problem3 problem3;
-    problem3.solve();
+    //Problem3 problem3;
+    //problem3.solve();
 
     //Problem4 problem4;
     //problem4.solve();

@@ -106,41 +106,9 @@ Matrix<T> Gauss(Matrix<T> A, Matrix<T> B) {
     int cnt = 0;
     while (true) {
 
-        cout << "A1 = \n";
-        for (int i = 0; i < A.height; i++) {
-            for (int j = 0; j < A.width; j++) {
-                cout << A.matrix[i][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n";
-        cout << "B1 = \n";
-        for (int i = 0; i < B.height; i++) {
-            for (int j = 0; j < B.width; j++) {
-                cout << B.matrix[i][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n";
 
         NormalizeEquationSystem(A, B);
 
-        cout << "A2 = \n";
-        for (int i = 0; i < A.height; i++) {
-            for (int j = 0; j < A.width; j++) {
-                cout << A.matrix[i][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n";
-        cout << "B2 = \n";
-        for (int i = 0; i < B.height; i++) {
-            for (int j = 0; j < B.width; j++) {
-                cout << B.matrix[i][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n\n\n\n";
 
         int flag = false;
 
@@ -170,22 +138,6 @@ Matrix<T> Gauss(Matrix<T> A, Matrix<T> B) {
             }
         }
 
-        cout << "A = \n";
-        for (int a = 0; a < A.height; a++) {
-            for (int j = 0; j < A.width; j++) {
-                cout << A.matrix[a][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n";
-        cout << "B = \n";
-        for (int a = 0; a < B.height; a++) {
-            for (int j = 0; j < B.width; j++) {
-                cout << B.matrix[a][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n\n\n\n";
     }
 
     return B;

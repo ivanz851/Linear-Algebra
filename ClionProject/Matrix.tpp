@@ -170,6 +170,7 @@ template<> Rational Matrix<Rational>::GetDetRational() {
         Rational tmp = 1;
         for (int i = 0; i < n; i++) {
             tmp *= (this->matrix)[i][p[i] - 1];
+            tmp.Normalize();
         }
         tmp *= get_sign(p);
 

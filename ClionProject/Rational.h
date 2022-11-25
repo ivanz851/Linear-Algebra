@@ -53,12 +53,13 @@ public:
 
     //void print() const;
 
+// Normalizes rational number such that greatest common divisor of numerator and denominator is 1
+void Normalize();
+
 private:
     __int128 numerator;
     __int128 denominator;
 
     static __int128 Gcd(__int128 a, __int128 b);
 
-    // Normalizes rational number such that greatest common divisor of numerator and denominator is 1
-    void Normalize();
 };
